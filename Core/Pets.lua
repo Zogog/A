@@ -3,7 +3,9 @@
 -- Centralized pet logic for TBIGUI v3.
 -- Handles validation, switching, kind detection, rarity, and inventory scanning.
 
-local AdoptMeAPI = require("AdoptMeAPI") -- GitHub-safe import
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+
 local Pets = {}
 Pets.__index = Pets
 
@@ -62,7 +64,7 @@ end
 ---------------------------------------------------------------------
 
 function Pets.GetEquippedPets()
-    return AdoptMeAPI.GetEquippedPets()
+    return AdoptMeAPI.GetPlayersEquippedPets()
 end
 
 function Pets.IsEquipped(petId: string): boolean
