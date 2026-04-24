@@ -2,11 +2,12 @@
 -- UI/Sections/Autofarm.lua
 -- Builds the Autofarm tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local State = require("State")
-local Scheduler = require("Scheduler/AutofarmScheduler")
+local State = import("Core/State")
+local Scheduler = import("Core/Scheduler/AutofarmScheduler")
 
 local AutofarmSection = {}
 AutofarmSection.__index = AutofarmSection
@@ -26,9 +27,9 @@ function AutofarmSection.Build(Tabs, Core, UI)
 
     tab:CreateToggle({
         Name = "Pet Autofarm",
-        CurrentValue = State.FarmStates.AutofarmPets.State,
+        CurrentValue = State.FarmStates.PetAutofarm.State,
         Callback = function(val)
-            State.FarmStates.AutofarmPets.State = val
+            State.FarmStates.PetAutofarm.State = val
         end,
     })
 
@@ -38,9 +39,9 @@ function AutofarmSection.Build(Tabs, Core, UI)
 
     tab:CreateToggle({
         Name = "Baby Autofarm",
-        CurrentValue = State.FarmStates.AutofarmBaby.State,
+        CurrentValue = State.FarmStates.BabyAutofarm.State,
         Callback = function(val)
-            State.FarmStates.AutofarmBaby.State = val
+            State.FarmStates.BabyAutofarm.State = val
         end,
     })
 
@@ -50,9 +51,9 @@ function AutofarmSection.Build(Tabs, Core, UI)
 
     tab:CreateToggle({
         Name = "Egg Autofarm",
-        CurrentValue = State.FarmStates.AutofarmEggs.State,
+        CurrentValue = State.FarmStates.AutoHatchEggs.State,
         Callback = function(val)
-            State.FarmStates.AutofarmEggs.State = val
+            State.FarmStates.AutoHatchEggs.State = val
         end,
     })
 
@@ -62,9 +63,9 @@ function AutofarmSection.Build(Tabs, Core, UI)
 
     tab:CreateToggle({
         Name = "Age Potion Autofarm",
-        CurrentValue = State.FarmStates.AutofarmAgePotions.State,
+        CurrentValue = State.FarmStates.AgePotionFarm.State,
         Callback = function(val)
-            State.FarmStates.AutofarmAgePotions.State = val
+            State.FarmStates.AgePotionFarm.State = val
         end,
     })
 
