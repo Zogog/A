@@ -2,8 +2,9 @@
 -- Webhooks/WebhookScheduler.lua
 -- Centralized queue + rate-limited webhook dispatcher for TBIGUI v3.
 
-local Config = require("Config")
-local Webhooks = require("Webhooks/Webhooks") -- your Webhooks.lua module
+-- Use global import() defined in main.lua
+local Config = import("Core/Config")
+local Webhooks = import("Webhooks/Webhooks")
 
 local WebhookScheduler = {}
 WebhookScheduler.__index = WebhookScheduler
