@@ -2,12 +2,13 @@
 -- UI/Sections/WebhookConfig.lua
 -- Builds the Webhook Config tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local State = require("State")
-local Webhooks = require("Webhooks/Webhooks")
-local Scheduler = require("Webhooks/WebhookScheduler")
+local State = import("Core/State")
+local Webhooks = import("Webhooks/Webhooks")
+local Scheduler = import("Webhooks/WebhookScheduler")
 
 local WebhookConfig = {}
 WebhookConfig.__index = WebhookConfig
