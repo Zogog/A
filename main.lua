@@ -51,7 +51,7 @@ import("UI/Sections/Debug").Build(Tabs)
 -- Webhook Scheduler
 ---------------------------------------------------------------------
 
-if State.Webhooks and State.Webhooks.Enabled then
+if State.Webhook and State.Webhook.Enabled then
     import("Core/Webhooks/WebhookScheduler").Start()
 end
 
