@@ -2,11 +2,12 @@
 -- UI/Sections/Debug.lua
 -- Builds the Debug tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local InventoryDebug = require("Modules/Debug/InventoryDebug")
-local State = require("State")
+local InventoryDebug = import("Modules/Debug/InventoryDebug")
+local State = import("Core/State")
 
 local DebugSection = {}
 DebugSection.__index = DebugSection
