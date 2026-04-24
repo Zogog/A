@@ -2,11 +2,12 @@
 -- UI/Sections/Events.lua
 -- Builds the Events tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local State = require("State")
-local TimerReader = require("TimerReader")
+local State = import("Core/State")
+local TimerReader = import("Core/TimerReader")
 
 local EventsSection = {}
 EventsSection.__index = EventsSection
