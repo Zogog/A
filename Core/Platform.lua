@@ -2,7 +2,8 @@
 -- Core/Platform.lua
 -- Creates and manages the AFK platform used by all engines.
 
-local Config = require("Config") -- GitHub-safe import
+-- Use global import() defined in main.lua
+local Config = import("Core/Config")
 
 local Platform = {}
 Platform.__index = Platform
