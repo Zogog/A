@@ -3,8 +3,9 @@
 -- Reusable potion dropdown component for ASTRAL/TBIGUI v3.
 -- Returns the POTION UID (string) to the callback.
 
-local Dropdowns = require("UI/Dropdowns") -- your string list builder
-local Inventory = require("Core/Inventory")
+-- Use global import() defined in main.lua
+local Dropdowns = import("UI/Dropdowns")
+local Inventory = import("Core/Inventory")
 
 local Potions = {}
 Potions.__index = Potions
