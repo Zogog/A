@@ -2,14 +2,15 @@
 -- UI/Sections/Misc.lua
 -- Builds the Misc tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local Movement = require("Core/Movement")
-local Platform = require("Core/Platform")
-local State = require("State")
-local ExecutorCheck = require("Core/ExecutorCheck")
-local SessionTracker = require("Stats/SessionTracker")
+local Movement = import("Core/Movement")
+local Platform = import("Core/Platform")
+local State = import("Core/State")
+local ExecutorCheck = import("Core/ExecutorCheck")
+local SessionTracker = import("Stats/SessionTracker")
 
 local MiscSection = {}
 MiscSection.__index = MiscSection
