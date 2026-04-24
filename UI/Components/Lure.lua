@@ -2,9 +2,10 @@
 -- UI/Components/Lure.lua
 -- Reusable lure farming UI component for ASTRAL/TBIGUI v3.
 
-local Dropdowns = require("UI/Dropdowns")
-local FurnitureManager = require("Core/FurnitureManager")
-local LureFarmEngine = require("Autofarm/LureFarmEngine")
+-- Use global import() defined in main.lua
+local Dropdowns = import("UI/Dropdowns")
+local FurnitureManager = import("Core/FurnitureManager")
+local LureFarmEngine = import("Core/Autofarm/LureFarmEngine")
 
 local LureComponent = {}
 LureComponent.__index = LureComponent
