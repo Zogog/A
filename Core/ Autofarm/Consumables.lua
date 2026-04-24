@@ -3,8 +3,9 @@
 -- Centralized consumable lookup & usage for TBIGUI v3.
 -- Handles food, drinks, potions, and tool usage for pets & babies.
 
-local AdoptMeAPI = require(script.Parent.Parent.AdoptMeAPI)
-local Config = require(script.Parent.Parent.Config)
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+local Config = import("Core/Config")
 
 local Consumables = {}
 Consumables.__index = Consumables
