@@ -3,14 +3,15 @@
 -- Baby autofarm engine for TBIGUI v3.
 -- Handles baby ailments, movement, platform logic, and team switching.
 
-local AdoptMeAPI = require(script.Parent.Parent.AdoptMeAPI)
-local Config = require(script.Parent.Parent.Config)
-local State = require(script.Parent.Parent.State)
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+local Config = import("Core/Config")
+local State = import("Core/State")
 
-local PetAilments = require(script.Parent.PetAilments)
-local PetWait = require(script.Parent.PetWait)
-local Platform = require(script.Parent.Platform)
-local Movement = require(script.Parent.Movement)
+local PetAilments = import("Core/Autofarm/PetAilments")
+local PetWait = import("Core/Autofarm/PetWait")
+local Platform = import("Core/Platform")
+local Movement = import("Core/Movement")
 
 local BabyFarmEngine = {}
 BabyFarmEngine.__index = BabyFarmEngine
