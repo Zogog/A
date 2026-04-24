@@ -1,31 +1,58 @@
 --!strict
 -- Main.lua (entry point for ASTRAL/TBIGUI v3)
 
--- Load UI
-local RayfieldInit = require("UI/RayfieldInit")
+---------------------------------------------------------------------
+-- GitHub Loader (embedded)
+---------------------------------------------------------------------
+
+local BASE = "https://raw.githubusercontent.com/<YOUR_USERNAME>/<YOUR_REPO>/main/"
+
+local function import(path)
+    local url = BASE .. path .. ".lua"
+    local src = game:HttpGet(url)
+    return loadstring(src)()
+end
+
+---------------------------------------------------------------------
+-- UI Init
+---------------------------------------------------------------------
+
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
--- Load Tabs
-local Tabs = require("UI/Tabs").Build(Window)
+---------------------------------------------------------------------
+-- Tabs
+---------------------------------------------------------------------
 
--- Load Core
-local State = require("State")
-local Scheduler = require("Scheduler/AutofarmScheduler")
+local Tabs = import("UI/Tabs").Build(Window)
 
--- Load Sections
-require("UI/Sections/Autofarm").Build(Tabs)
-require("UI/Sections/Pets").Build(Tabs)
-require("UI/Sections/Events").Build(Tabs)
-require("UI/Sections/Extras").Build(Tabs)
-require("UI/Sections/Misc").Build(Tabs)
-require("UI/Sections/BucksTransfer").Build(Tabs)
-require("UI/Sections/WebhookConfig").Build(Tabs)
-require("UI/Sections/Stats").Build(Tabs)
-require("UI/Sections/Debug").Build(Tabs)
+---------------------------------------------------------------------
+-- Core
+---------------------------------------------------------------------
 
--- Start scheduler if enabled
+local State = import("Core/State")
+local Scheduler = import("Core/Scheduler/AutofarmScheduler")
+
+---------------------------------------------------------------------
+-- Sections
+---------------------------------------------------------------------
+
+import("UI/Sections/Autofarm").Build(Tabs)
+import("UI/Sections/Pets").Build(Tabs)
+import("UI/Sections/Events").Build(Tabs)
+import("UI/Sections/Extras").Build(Tabs)
+import("UI/Sections/Misc").Build(Tabs)
+import("UI/Sections/BucksTransfer").Build(Tabs)
+import("UI/Sections/WebhookConfig").Build(Tabs)
+import("UI/Sections/Stats").Build(Tabs)
+import("UI/Sections/Debug").Build(Tabs)
+
+---------------------------------------------------------------------
+-- Webhook Scheduler
+---------------------------------------------------------------------
+
 if State.Webhooks.Enabled then
-    require("Webhooks/WebhookScheduler").Start()
+    import("Core/Webhooks/WebhookScheduler").Start()
 end
 
 print("ASTRAL/TBIGUI v3 loaded successfully.")
