@@ -2,11 +2,12 @@
 -- Core/Autofarm/AFKManager.lua
 -- Keeps the player at the AFK platform when no engines are running.
 
-local State = require(script.Parent.Parent.State)
-local Config = require(script.Parent.Parent.Config)
+-- Use global import() defined in main.lua
+local State = import("Core/State")
+local Config = import("Core/Config")
 
-local Movement = require(script.Parent.Movement)
-local Platform = require(script.Parent.Platform)
+local Movement = import("Core/Movement")
+local Platform = import("Core/Platform")
 
 local AFKManager = {}
 AFKManager.__index = AFKManager
