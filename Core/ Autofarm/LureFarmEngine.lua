@@ -2,13 +2,14 @@
 -- Core/Autofarm/LureFarmEngine.lua
 -- Automatically places and maintains lures for the player.
 
-local AdoptMeAPI = require(script.Parent.Parent.AdoptMeAPI)
-local Config = require(script.Parent.Parent.Config)
-local State = require(script.Parent.Parent.State)
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+local Config = import("Core/Config")
+local State = import("Core/State")
 
-local PetWait = require(script.Parent.PetWait)
-local Platform = require(script.Parent.Platform)
-local Movement = require(script.Parent.Movement)
+local PetWait = import("Core/Autofarm/PetWait")
+local Platform = import("Core/Platform")
+local Movement = import("Core/Movement")
 
 local LureFarmEngine = {}
 LureFarmEngine.__index = LureFarmEngine
