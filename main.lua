@@ -2,12 +2,12 @@
 -- Main.lua (entry point for ASTRAL/TBIGUI v3)
 
 ---------------------------------------------------------------------
--- GitHub Loader (embedded)
+-- Global GitHub loader
 ---------------------------------------------------------------------
 
 local BASE = "https://raw.githubusercontent.com/Zogog/A/main/"
 
-local function import(path)
+getgenv().import = function(path: string)
     local url = BASE .. path .. ".lua"
     local src = game:HttpGet(url)
     return loadstring(src)()
@@ -51,7 +51,7 @@ import("UI/Sections/Debug").Build(Tabs)
 -- Webhook Scheduler
 ---------------------------------------------------------------------
 
-if State.Webhooks.Enabled then
+if State.Webhooks and State.Webhooks.Enabled then
     import("Core/Webhooks/WebhookScheduler").Start()
 end
 
