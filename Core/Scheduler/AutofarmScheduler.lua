@@ -2,22 +2,23 @@
 -- Scheduler/AutofarmScheduler.lua
 -- Central dispatcher for all autofarm engines in TBIGUI v3.
 
-local State = require("State")
-local TimerReader = require("TimerReader")
+-- Use global import() defined in main.lua
+local State = import("Core/State")
+local TimerReader = import("Core/Autofarm/TimerReader")
 
-local Movement = require("Movement")
-local Platform = require("Platform")
+local Movement = import("Core/Movement")
+local Platform = import("Core/Platform")
 
 -- Engines
-local PetFarmEngine = require("Autofarm/PetFarmEngine")
-local BabyFarmEngine = require("Autofarm/BabyFarmEngine")
-local EggHatchEngine = require("Autofarm/EggHatchEngine")
-local AgePotionFarmEngine = require("Autofarm/AgePotionFarmEngine")
-local LureFarmEngine = require("Autofarm/LureFarmEngine")
+local PetFarmEngine = import("Core/Autofarm/PetFarmEngine")
+local BabyFarmEngine = import("Core/Autofarm/BabyFarmEngine")
+local EggHatchEngine = import("Core/Autofarm/EggHatchEngine")
+local AgePotionFarmEngine = import("Core/Autofarm/AgePotionFarmEngine")
+local LureFarmEngine = import("Core/Autofarm/LureFarmEngine")
 
-local CherryBlossomEngine = require("Autofarm/CherryBlossomEngine")
-local KaijuStompEngine = require("Autofarm/KaijuStompEngine")
-local ComboEventEngine = require("Autofarm/ComboEventEngine")
+local CherryBlossomEngine = import("Core/Autofarm/CherryBlossomEngine")
+local KaijuStompEngine = import("Core/Autofarm/KaijuStompEngine")
+local ComboEventEngine = import("Core/Autofarm/ComboEventEngine")
 
 local AutofarmScheduler = {}
 AutofarmScheduler.__index = AutofarmScheduler
@@ -36,7 +37,7 @@ local function AnyEngineRunning(): boolean
 end
 
 local function StopAllEngines()
-    for name, data in pairs(State.FarmStates) do
+    for _, data in pairs(State.FarmStates) do
         if data.Stop then
             data.Stop()
         end
