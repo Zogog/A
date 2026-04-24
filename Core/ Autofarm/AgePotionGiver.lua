@@ -2,14 +2,15 @@
 -- Core/Autofarm/AgePotionGiver.lua
 -- Automatically gives age potions to the selected pet.
 
-local AdoptMeAPI = require(script.Parent.Parent.AdoptMeAPI)
-local Config = require(script.Parent.Parent.Config)
-local State = require(script.Parent.Parent.State)
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+local Config = import("Core/Config")
+local State = import("Core/State")
 
-local Pets = require(script.Parent.Pets)
-local PetWait = require(script.Parent.PetWait)
-local Movement = require(script.Parent.Movement)
-local Platform = require(script.Parent.Platform)
+local Pets = import("Core/Autofarm/Pets")
+local PetWait = import("Core/Autofarm/PetWait")
+local Movement = import("Core/Movement")
+local Platform = import("Core/Platform")
 
 local AgePotionGiver = {}
 AgePotionGiver.__index = AgePotionGiver
