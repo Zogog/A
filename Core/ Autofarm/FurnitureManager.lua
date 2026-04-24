@@ -2,8 +2,9 @@
 -- Core/Autofarm/FurnitureManager.lua
 -- Centralized furniture lookup & usage for TBIGUI v3.
 
-local AdoptMeAPI = require(script.Parent.Parent.AdoptMeAPI)
-local Config = require(script.Parent.Parent.Config)
+-- Use global import() defined in main.lua
+local AdoptMeAPI = import("Core/AdoptMeAPI")
+local Config = import("Core/Config")
 
 local FurnitureManager = {}
 FurnitureManager.__index = FurnitureManager
