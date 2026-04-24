@@ -3,8 +3,9 @@
 -- Reusable pet dropdown component for ASTRAL/TBIGUI v3.
 -- Returns the PET UID (string) to the callback.
 
-local Dropdowns = require("UI/Dropdowns") -- your string list builder
-local PetsCore = require("Core/Pets")
+-- Use global import() defined in main.lua
+local Dropdowns = import("UI/Dropdowns")
+local PetsCore = import("Core/Pets")
 
 local PetDropdown = {}
 PetDropdown.__index = PetDropdown
