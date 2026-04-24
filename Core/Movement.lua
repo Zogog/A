@@ -3,8 +3,9 @@
 -- Safe teleporting + platform-relative positioning for TBIGUI v3.
 -- Does NOT override WalkSpeed, JumpPower, or Humanoid physics.
 
-local Config = require("Config") -- GitHub-safe import
-local Platform = require("Platform")
+-- Use global import() defined in main.lua
+local Config = import("Core/Config")
+local Platform = import("Core/Platform")
 
 local Movement = {}
 Movement.__index = Movement
