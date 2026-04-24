@@ -5,7 +5,7 @@
 -- GitHub Loader (embedded)
 ---------------------------------------------------------------------
 
-local BASE = "https://raw.githubusercontent.com/<YOUR_USERNAME>/<YOUR_REPO>/main/"
+local BASE = "https://raw.githubusercontent.com/Zogog/A/main/"
 
 local function import(path)
     local url = BASE .. path .. ".lua"
