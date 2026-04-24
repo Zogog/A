@@ -2,11 +2,12 @@
 -- UI/Sections/Extras.lua
 -- Builds the Extras tab UI for ASTRAL/TBIGUI v3.
 
-local RayfieldInit = require("UI/RayfieldInit")
+-- Use global import() defined in main.lua
+local RayfieldInit = import("UI/RayfieldInit")
 local Window = RayfieldInit.Init()
 
-local ExtrasModule = require("Modules/Extras")
-local State = require("State")
+local ExtrasModule = import("Modules/Extras")
+local State = import("Core/State")
 
 local ExtrasSection = {}
 ExtrasSection.__index = ExtrasSection
