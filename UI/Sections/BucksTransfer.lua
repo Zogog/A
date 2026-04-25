@@ -1,137 +1,29 @@
 --!strict
--- UI/Sections/BucksTransfer.lua
--- Builds the Bucks Transfer tab UI for ASTRAL/TBIGUI v3.
-
--- Use global import() defined in main.lua
-local RayfieldInit = import("UI/RayfieldInit")
-local Window = RayfieldInit.Init()
-
-local State = import("Core/State")
-local CashRegister = import("Core/Transfer/CashRegister")
-local Mannequin = import("Core/Transfer/Mannequin")
-local DialogSuppressor = import("Core/Transfer/DialogSuppressor")
 
 local BucksTransfer = {}
 BucksTransfer.__index = BucksTransfer
 
----------------------------------------------------------------------
--- Build Bucks Transfer Tab
----------------------------------------------------------------------
-
-function BucksTransfer.Build(Tabs, Core, UI)
+function BucksTransfer.Build(Tabs)
     local tab = Tabs.BucksTransfer
+    if not tab then return end
 
-    -----------------------------------------------------------------
-    -- Cash Register Transfer
-    -----------------------------------------------------------------
-
-    tab:CreateSection("💵 Cash Register Transfer")
-
-    tab:CreateToggle({
-        Name = "Enable Cash Register Transfer",
-        CurrentValue = State.Transfer.CashRegisterEnabled,
-        Callback = function(val)
-            State.Transfer.CashRegisterEnabled = val
-        end,
-    })
+    tab:CreateLabel("Bucks Transfer")
 
     tab:CreateInput({
-        Name = "Amount to Transfer",
-        PlaceholderText = "Example: 50",
+        Name = "Amount",
+        PlaceholderText = "Enter amount",
         RemoveTextAfterFocusLost = false,
-        Callback = function(text)
-            local num = tonumber(text)
-            if num then
-                State.Transfer.CashRegisterAmount = num
-            end
-        end,
+        Callback = function(v)
+            -- store in state if needed
+        end
     })
 
     tab:CreateButton({
-        Name = "Start Cash Register Transfer",
+        Name = "Send Bucks",
         Callback = function()
-            CashRegister.Start(State.Transfer.CashRegisterAmount)
-        end,
+            print("Sending bucks...")
+        end
     })
-
-    tab:CreateButton({
-        Name = "Stop Cash Register Transfer",
-        Callback = function()
-            CashRegister.Stop()
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Mannequin Transfer
-    -----------------------------------------------------------------
-
-    tab:CreateSection("🧍 Mannequin Transfer")
-
-    tab:CreateToggle({
-        Name = "Enable Mannequin Transfer",
-        CurrentValue = State.Transfer.MannequinEnabled,
-        Callback = function(val)
-            State.Transfer.MannequinEnabled = val
-        end,
-    })
-
-    tab:CreateInput({
-        Name = "Amount to Transfer",
-        PlaceholderText = "Example: 50",
-        RemoveTextAfterFocusLost = false,
-        Callback = function(text)
-            local num = tonumber(text)
-            if num then
-                State.Transfer.MannequinAmount = num
-            end
-        end,
-    })
-
-    tab:CreateButton({
-        Name = "Start Mannequin Transfer",
-        Callback = function()
-            Mannequin.Start(State.Transfer.MannequinAmount)
-        end,
-    })
-
-    tab:CreateButton({
-        Name = "Stop Mannequin Transfer",
-        Callback = function()
-            Mannequin.Stop()
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Dialog Suppression
-    -----------------------------------------------------------------
-
-    tab:CreateSection("🔇 Dialog Suppression")
-
-    tab:CreateToggle({
-        Name = "Suppress 'Okay' Dialogs (Recommended)",
-        CurrentValue = State.Transfer.SuppressDialogs,
-        Callback = function(val)
-            State.Transfer.SuppressDialogs = val
-
-            if val then
-                DialogSuppressor.Enable()
-            else
-                DialogSuppressor.Disable()
-            end
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Warnings
-    -----------------------------------------------------------------
-
-    tab:CreateSection("⚠️ Warnings")
-
-    tab:CreateLabel("• Do NOT enable both transfer methods at the same time.")
-    tab:CreateLabel("• Dialog suppression prevents popups from interrupting transfers.")
-    tab:CreateLabel("• Transfers stop automatically if Adopt Me blocks the action.")
 end
-
----------------------------------------------------------------------
 
 return BucksTransfer
