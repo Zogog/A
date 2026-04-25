@@ -18,7 +18,7 @@ end
 ---------------------------------------------------------------------
 
 local RayfieldInit = import("UI/RayfieldInit")
-local Window = RayfieldInit.Init()
+getgenv().Window = RayfieldInit.Init()
 
 ---------------------------------------------------------------------
 -- Tabs
