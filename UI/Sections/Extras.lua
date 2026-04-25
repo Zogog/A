@@ -1,107 +1,52 @@
 --!strict
--- UI/Sections/Extras.lua
--- Builds the Extras tab UI for ASTRAL/TBIGUI v3.
-
--- Use global import() defined in main.lua
-local RayfieldInit = import("UI/RayfieldInit")
-local Window = RayfieldInit.Init()
-
 local ExtrasModule = import("Modules/Extras")
-local State = import("Core/State")
 
-local ExtrasSection = {}
-ExtrasSection.__index = ExtrasSection
+local Extras = {}
+Extras.__index = Extras
 
----------------------------------------------------------------------
--- Build Extras Tab
----------------------------------------------------------------------
-
-function ExtrasSection.Build(Tabs, Core, UI)
+function Extras.Build(Tabs)
     local tab = Tabs.Extras
+    if not tab then return end
 
-    -----------------------------------------------------------------
-    -- Player Movement
-    -----------------------------------------------------------------
-
-    tab:CreateSection("Player Movement")
+    tab:CreateLabel("Extras")
 
     tab:CreateSlider({
         Name = "WalkSpeed",
-        Range = { 0, 100 },
+        Range = {16, 200},
         Increment = 1,
-        Suffix = "Speed",
         CurrentValue = 16,
-        Callback = function(value)
-            ExtrasModule.SetWalkSpeed(value)
-        end,
+        Callback = function(v)
+            ExtrasModule.SetWalkSpeed(v)
+        end
     })
 
     tab:CreateSlider({
         Name = "JumpPower",
-        Range = { 0, 250 },
+        Range = {50, 300},
         Increment = 1,
-        Suffix = "Power",
         CurrentValue = 50,
-        Callback = function(value)
-            ExtrasModule.SetJumpPower(value)
-        end,
+        Callback = function(v)
+            ExtrasModule.SetJumpPower(v)
+        end
     })
 
-    -----------------------------------------------------------------
-    -- Performance
-    -----------------------------------------------------------------
-
-    tab:CreateSection("Performance")
-
     tab:CreateToggle({
-        Name = "Disable Rendering (white screen, boosts FPS)",
+        Name = "Anti-AFK",
         CurrentValue = false,
-        Callback = function(state)
-            ExtrasModule.SetRendering(not state)
-        end,
+        Callback = function(v)
+            ExtrasModule.SetAntiAFK(v)
+        end
     })
 
     tab:CreateSlider({
         Name = "FPS Cap",
-        Range = { 5, 240 },
-        Increment = 1,
-        Suffix = "FPS",
+        Range = {30, 240},
+        Increment = 10,
         CurrentValue = 60,
-        Callback = function(value)
-            ExtrasModule.SetFPSCap(value)
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Tick Delay
-    -----------------------------------------------------------------
-
-    tab:CreateSlider({
-        Name = "Tick Delay",
-        Range = { 0.1, 5 },
-        Increment = 0.1,
-        Suffix = "Seconds",
-        CurrentValue = ExtrasModule.GetTickDelay(),
-        Callback = function(value)
-            ExtrasModule.SetTickDelay(value)
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Quality of Life
-    -----------------------------------------------------------------
-
-    tab:CreateSection("Quality of Life")
-
-    tab:CreateToggle({
-        Name = "Anti-AFK",
-        CurrentValue = true,
-        Callback = function(state)
-            ExtrasModule.SetAntiAFK(state)
-        end,
+        Callback = function(v)
+            ExtrasModule.SetFPSCap(v)
+        end
     })
 end
 
----------------------------------------------------------------------
-
-return ExtrasSection
+return Extras
