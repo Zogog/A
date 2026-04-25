@@ -1,104 +1,57 @@
 --!strict
--- UI/Sections/Pets.lua
--- Builds the Pets tab UI for ASTRAL/TBIGUI v3.
-
--- Use global import() defined in main.lua
-local RayfieldInit = import("UI/RayfieldInit")
-local Window = RayfieldInit.Init()
-
 local PetViewer = import("Modules/PetViewer")
-local PetsCore = import("Core/Pets")
 
-local PetsSection = {}
-PetsSection.__index = PetsSection
+local Pets = {}
+Pets.__index = Pets
 
----------------------------------------------------------------------
--- Build Pets Tab
----------------------------------------------------------------------
-
-function PetsSection.Build(Tabs, Core, UI)
+function Pets.Build(Tabs)
     local tab = Tabs.Pets
+    if not tab then return end
 
-    tab:CreateSection("Pet Viewer")
-
-    -----------------------------------------------------------------
-    -- Pet List
-    -----------------------------------------------------------------
-
-    local PetListLabel = tab:CreateLabel("Loading pets...", "paw-print")
+    tab:CreateLabel("Pet Viewer")
 
     local PetList = tab:CreateParagraph({
         Title = "Your Pets",
-        Content = "Loading...",
+        Content = "Loading..."
     })
 
-    local Details = tab:CreateParagraph({
+    local PetDetails = tab:CreateParagraph({
         Title = "Pet Details",
-        Content = "Select a pet to view details.",
+        Content = "Select a pet."
     })
 
-    -----------------------------------------------------------------
-    -- Refresh Button
-    -----------------------------------------------------------------
-
-    tab:CreateButton({
-        Name = "Refresh Pet List",
-        Callback = function()
-            PetViewer.Refresh()
-        end,
-    })
-
-    -----------------------------------------------------------------
-    -- Search Input
-    -----------------------------------------------------------------
-
-    tab:CreateInput({
-        Name = "Search Pets",
-        PlaceholderText = "Type a pet name...",
+    local SearchBox = tab:CreateInput({
+        Name = "Search",
+        PlaceholderText = "Type to filter pets...",
         RemoveTextAfterFocusLost = false,
         Callback = function(text)
             PetViewer.Search(text)
-        end,
+        end
     })
 
-    -----------------------------------------------------------------
-    -- Select Pet by Index
-    -----------------------------------------------------------------
-
-    tab:CreateInput({
-        Name = "Select Pet (Enter Index)",
-        PlaceholderText = "Example: 1",
-        RemoveTextAfterFocusLost = true,
+    local SelectBox = tab:CreateInput({
+        Name = "Select Pet #",
+        PlaceholderText = "Enter index",
+        RemoveTextAfterFocusLost = false,
         Callback = function(text)
             PetViewer.SelectByIndex(text)
-        end,
+        end
     })
-
-    -----------------------------------------------------------------
-    -- Equip Button
-    -----------------------------------------------------------------
 
     tab:CreateButton({
-        Name = "Equip Selected Pet",
+        Name = "Equip Selected",
         Callback = function()
             PetViewer.EquipSelected()
-        end,
+        end
     })
-
-    -----------------------------------------------------------------
-    -- Wire UI elements to PetViewer
-    -----------------------------------------------------------------
 
     PetViewer.BindUI({
-        Label = PetListLabel,
+        Label = { Set = function() end }, -- optional
         List = PetList,
-        Details = Details,
+        Details = PetDetails
     })
 
-    -- Initial load
     PetViewer.Refresh()
 end
 
----------------------------------------------------------------------
-
-return PetsSection
+return Pets
